@@ -1,0 +1,22 @@
+{
+  "name": "force-orange",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "license": "ISC",
+  "packageManager": "pnpm@9.4.0",
+  "description": "Site des bénévoles de Paris Est Ludique",
+  "author": "ChatonDeAru <https://github.com/chatondearu>",
+  "scripts": {
+    "dev": "pnpm --stream -r run dev",
+    "build": "pnpm --stream -r run build",
+    "serve": "pnpm --stream -r run serve",
+    "up": "taze major -I",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.2",
+    "taze": "^0.16.6",
+    "typescript": "^5.5.4"
+  }
+}
