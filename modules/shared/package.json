@@ -1,0 +1,35 @@
+{
+  "name": "@pel/shared",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.9.0",
+  "main": "./nuxt.config.ts",
+  "files": [
+    "components/",
+    "composales/",
+    "nuxt.config.ts",
+    "tailwind.config.ts"
+  ],
+  "scripts": {
+    "dev": "nuxt dev .playground --port 3042",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "postinstall": "nuxt prepare .playground",
+    "lint": "eslint .",
+    "up": "taze major -I"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.0.0",
+    "@iconify-json/mdi": "^1.2.0",
+    "@nuxt/devtools": "^1.4.1",
+    "@nuxt/fonts": "^0.7.2",
+    "@nuxt/ui-pro": "^1.4.2",
+    "@pinia/nuxt": "^0.5.4",
+    "@vueuse/core": "^11.0.3",
+    "@vueuse/nuxt": "^11.0.3",
+    "eslint": "^9.9.1",
+    "eslint-plugin-format": "^0.1.2",
+    "nuxt": "^3.12.4"
+  }
+}
