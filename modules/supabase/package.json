@@ -1,0 +1,14 @@
+{
+  "name": "@pel/supabase",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.9.0",
+  "main": "./type.ts",
+  "files": [
+    "types.ts"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "up": "taze major -I"
+  }
+}

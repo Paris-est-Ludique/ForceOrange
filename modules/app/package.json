@@ -13,6 +13,10 @@
   },
   "dependencies": {
     "@pel/shared": "workspace:*",
+    "@pel/supabase": "workspace:*",
+    "@zxcvbn-ts/core": "^3.0.4",
+    "@zxcvbn-ts/language-common": "^3.0.4",
+    "@zxcvbn-ts/language-fr": "^3.0.2",
     "nuxt": "^3.12.4",
     "vue": "latest"
   },

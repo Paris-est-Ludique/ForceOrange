@@ -1,16 +1,16 @@
 [build.environment]
-  NODE_VERSION = "21"
+NODE_VERSION = "21"
 
 [build]
-  publish = "dist"
-  command = "pnpm run build"
+publish = ".output"
+command = "pnpm run build"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
 
 [[headers]]
-  for = "/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"

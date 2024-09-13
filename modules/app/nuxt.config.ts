@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/signin',
       callback: '/signin/confirm',
-      exclude: ['/*'],
+      exclude: ['/signin/*', '/join', '/public/*'],
     },
     cookieName: 'fo-cookies',
     cookieOptions: {
