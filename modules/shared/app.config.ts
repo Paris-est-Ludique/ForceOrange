@@ -7,17 +7,13 @@ export default defineAppConfig({
       },
     },
     input: {
-      placeholder: 'placeholder-transparent',
+      base: 'focus:bg-orange-100',
       default: {
         size: 'md',
         color: 'primary',
-        variant: 'none'
       },
     },
     formGroup: {
-      wrapper: 'flex flex-col md:flex-row rounded-lg py-1 px-4 border-b-2 border-orange-500',
-      inner: 'flex-2 content-center',
-      container: 'flex-1 mt-auto',
       label: {
         base: 'font-thin'
       },

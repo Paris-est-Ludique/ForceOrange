@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Database } from '@pel/supabase/types'
 
+definePageMeta({
+  name: 'SigninConfirm',
+})
+
 const user = useSupabaseUser()
 const { auth } = useSupabaseClient<Database>()
 
@@ -19,9 +23,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <UCard class="container mx-auto max-w-screen-md">
     <p class="u-text-black">
       Redirecting...
     </p>
-  </div>
+  </UCard>
 </template>

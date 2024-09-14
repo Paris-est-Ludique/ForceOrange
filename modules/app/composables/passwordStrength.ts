@@ -2,7 +2,7 @@ import { zxcvbn, zxcvbnOptions, type ZxcvbnResult } from '@zxcvbn-ts/core'
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common'
 import * as zxcvbnEnPackage from '@zxcvbn-ts/language-fr'
 
-export const usePasswordStrength = (password: Ref<string | undefined>) => {
+export const usePasswordStrength = (password?: Ref<string | undefined>) => {
 
   // 0 # too guessable: risky password. (guesses < 10 ^ 3)
   // 1 # very guessable: protection from throttled online attacks. (guesses < 10 ^ 6)
@@ -25,18 +25,25 @@ export const usePasswordStrength = (password: Ref<string | undefined>) => {
 
   zxcvbnOptions.setOptions(options)
 
-  watchDebounced(password, (newPassword) => {
-    if (!newPassword) {
-      strength.value = {
-        score: 0,
-      }
-      return
-    }
+  function testPassword(password: string) {
+    return zxcvbn(password.trim())
+  }
 
-    strength.value = zxcvbn(newPassword.trim())
-  }, { immediate: true, debounce: 500 })
+  if (password) {
+    watchDebounced(password, (newPassword) => {
+      if (!newPassword) {
+        strength.value = {
+          score: 0,
+        }
+        return
+      }
+
+      strength.value = zxcvbn(newPassword.trim())
+    }, { immediate: true, debounce: 500 })
+  }
 
   return {
     strength,
+    testPassword,
   }
 } 

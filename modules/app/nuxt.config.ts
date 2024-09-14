@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       env: '',
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
     },
   },
 
@@ -33,7 +34,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/signin',
       callback: '/signin/confirm',
-      exclude: ['/signin/*', '/join', '/public/*'],
+      exclude: ['/profile/auth/reset', '/signin/*', '/join', '/join/*', '/public/*'],
     },
     cookieName: 'fo-cookies',
     cookieOptions: {
