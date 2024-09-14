@@ -7,26 +7,32 @@ definePageMeta({
   name: 'Signin',
 })
 
-const user = useSupabaseUser()
+const router = useRouter()
+const toast = useToast()
+
+const loading = ref(false)
 const { auth } = useSupabaseClient<Database>()
 
+const { inputStyle, formGroupStyle } = useFoStyle()
+
 const schema = object({
-  mail: string().email('Invalid email').required('Required'),
-  password: string().required('Required'),
+  email: string().lowercase().trim().email('Invalid email').required('Required'),
+  password: string().lowercase().trim().required('Required'),
 })
 
 type Schema = InferType<typeof schema>
 
 const state = reactive({
-  mail: undefined,
+  email: undefined,
   password: undefined,
 })
 
 async function onSignin(event: FormSubmitEvent<Schema>) {
+  loading.value = true
   const formSubmit = event.data
 
   const { data, error } = await auth.signInWithPassword({
-    email: formSubmit.mail,
+    email: formSubmit.email,
     password: formSubmit.password
   })
 
@@ -36,41 +42,56 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
   //   options: {
   //     // set this to false if you do not want the user to be automatically signed up
   //     shouldCreateUser: false,
-  //     emailRedirectTo: 'https://example.com/welcome',
+  //     emailRedirectTo: 'https://example.com/waiting',
   //   },
   // })
 
-  // TODO confirm signin
+  if (error) {
+    console.log(error)
+    toast.add({
+      title: 'Erreur',
+      description: 'Une erreur est survenue lors de ton inscription',
+      color: 'red',
+    })
+  } else {
+    console.log(data)
 
-  if (error) console.log(error)
+    toast.add({
+      title: 'Connecté(e)',
+      description: 'Que la force Orange soit avec toi !',
+      color: 'orange',
+    })
+
+    router.push('/')
+  }
+  loading.value = false
 }
 </script>
 
 <template>
+  <UCard class="container mx-auto max-w-screen-md">
+    <h1 class="text-2xl uppercase mb-4">Qui êtes-vous ?</h1>
 
-  <UCard>
-    <h1 class="text-2xl uppercase">Qui êtes-vous ?</h1>
-
-    <UForm :state="state" @submit="onSignin">
-      <UFormGroup label="Adresse courriel">
-        <UInput name="mail" v-model="state.mail" />
+    <UForm :schema="schema" :state="state" @submit="onSignin">
+      <UFormGroup :ui="formGroupStyle.ui" label="Adresse courriel" name="email">
+        <UInput :ui="inputStyle.ui" v-bind="inputStyle.attrs" v-model="state.email" />
       </UFormGroup>
 
-      <UFormGroup label="Mot de passe">
-        <UInput type="password" name="password" v-model="state.password" />
+      <UFormGroup :ui="formGroupStyle.ui" label="Mot de passe" name="password">
+        <UInput :ui="inputStyle.ui" v-bind="inputStyle.attrs" type="password" v-model="state.password" />
       </UFormGroup>
 
-      <UButton type="submit">Se Connecter</UButton>
-      <UButton to="/join">Mot de passe oublié ?</UButton>
+      <div class="mt-8 md:justify-center flex flex-col md:flex-row gap-8">
+        <UButton type="submit" :disabled="loading" :loading="loading">Se Connecter</UButton>
+        <UButton :to="{ name: 'SigninForgot' }" variant="ghost">Mot de passe oublié ?</UButton>
+      </div>
     </UForm>
 
-    <!-- <p class="text-error">Nous n’avons pas reconnu vos identifiants.</p> -->
-
-    <p>ou bien</p>
+    <!-- <p>ou bien</p>
 
     <div>
       <UButton>Se connecter avec Google</UButton>
       <UButton>Se connecter avec Discord</UButton>
-    </div>
+    </div> -->
   </UCard>
 </template>
