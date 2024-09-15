@@ -27,7 +27,7 @@ const state = reactive({
   email: undefined,
 })
 
-async function onSignin(event: FormSubmitEvent<Schema>) {
+async function onSend(event: FormSubmitEvent<Schema>) {
   loading.value = true
   const formSubmit = event.data
 
@@ -58,22 +58,7 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <UCard class="container mx-auto max-w-screen-md">
-    <h1 class="text-2xl uppercase mb-4">Réinitialiser votre mot de passe</h1>
-    <p>Nous pouvons envoyer un lien de récupération à l’adresse courriel associé à votre compte.</p>
-
-    <UForm :schema="schema" :state="state" @submit="onSignin" class="my-8">
-      <UFormGroup :ui="formGroupStyle.ui" label="Adresse courriel" name="email">
-        <UInput :ui="inputStyle.ui" v-bind="inputStyle.attrs" v-model="state.email" />
-      </UFormGroup>
-
-      <p class="mt-8 text-center">
-        <UButton type="submit" variant="soft" :disabled="loading" :loading="loading">Récupérer mon compte</UButton>
-      </p>
-    </UForm>
-  </UCard>
-
-  <UCard v-if="sended">
+  <UCard v-if="sended" class="container mx-auto max-w-screen-md">
     <h1 class="text-2xl uppercase mb-8">C’est partit</h1>
     <p>
       Si nous avons connaissance de cette adresse, vous devriez recevoir un courriel contenant les instructions pour
@@ -84,5 +69,20 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
         Fermer cette page
       </UButton>
     </p>
+  </UCard>
+
+  <UCard v-else class="container mx-auto max-w-screen-md">
+    <h1 class="text-2xl uppercase mb-4">Réinitialiser votre mot de passe</h1>
+    <p>Nous pouvons envoyer un lien de récupération à l’adresse courriel associé à votre compte.</p>
+
+    <UForm :schema="schema" :state="state" @submit="onSend" class="my-8">
+      <UFormGroup :ui="formGroupStyle.ui" label="Adresse courriel" name="email">
+        <UInput :ui="inputStyle.ui" v-bind="inputStyle.attrs" v-model="state.email" />
+      </UFormGroup>
+
+      <p class="mt-8 text-center">
+        <UButton type="submit" variant="soft" :disabled="loading" :loading="loading">Récupérer mon compte</UButton>
+      </p>
+    </UForm>
   </UCard>
 </template>

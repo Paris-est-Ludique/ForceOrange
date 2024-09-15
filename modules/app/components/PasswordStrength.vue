@@ -29,6 +29,18 @@ const color = computed(() => {
       <UMeter :value="strength.score" :max="4" :color="color">
         <template #label>
           <p class="text-sm font-thin">
+            <UPopover class="inline-block align-middle">
+              <UIcon name="i-mdi-info-circle" color="blue" class="w-5 h-5 mr-2 hover:text-blue-300" />
+              <template #panel>
+                <p class="max-w-sm p-4 text-gray-400 font-thin">
+                  Un mot bon mot de passe est souvent lié au nombres de charactères (une phrase est un bon mot de
+                  passe) et à sa complexité à deviner (non, votre code postal et le nom de votre lapin n'est pas un bon
+                  motde
+                  passe)
+                </p>
+              </template>
+            </UPopover>
+
             <template v-if="strength.score === 1">
               Le mot de passe est faible
             </template>
@@ -44,16 +56,6 @@ const color = computed(() => {
           </p>
         </template>
       </UMeter>
-      <UPopover>
-        <UIcon name="i-mdi-info-circle" color="blue" class="w-5 h-5 m-2 hover:text-blue-300" />
-        <template #panel>
-          <p class="max-w-sm p-4 text-gray-400 font-thin">
-            Un mot bon mot de passe est souvent lié au nombres de charactères (une phrase est un bon mot de
-            passe) et à sa complexité à deviner (non, votre code postal et le nom de votre lapin n'est pas un bon motde
-            passe)
-          </p>
-        </template>
-      </UPopover>
     </div>
   </div>
 </template>

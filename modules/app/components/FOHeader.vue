@@ -35,7 +35,7 @@ const signOut = async () => {
 </script>
 
 <template>
-  <UHeader :links="links" class="bg-white dark:bg-gray-900 rounded-xl shadow-lg mx-4 mt-4">
+  <UHeader class="bg-white dark:bg-gray-900 rounded-xl shadow-lg mx-4 mt-4">
     <template #left>
       <NuxtLink to="/">
         <NuxtImg src="/assets/img/logo-fo.svg" alt="Force Orange" />
@@ -43,7 +43,7 @@ const signOut = async () => {
     </template>
 
     <template #right>
-      <UColorModeButton />
+      <UHeaderLinks class="mx-2" :ui="{ base: 'gap-2' }" :links="links" />
 
       <template v-if="user">
         <UButton to="/profile" :loading="loading" icon="i-mdi-account-circle">
@@ -53,6 +53,7 @@ const signOut = async () => {
       </template>
 
       <UButton v-else to="/signin" variant="soft">Se connecter</UButton>
+      <UColorModeButton />
     </template>
   </UHeader>
 
