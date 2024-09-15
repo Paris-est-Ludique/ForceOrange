@@ -2,7 +2,7 @@
 NODE_VERSION = "21"
 
 [build]
-publish = ".output"
+publish = "dist"
 command = "pnpm run build"
 
 [[redirects]]
