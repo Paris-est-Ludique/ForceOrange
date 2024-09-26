@@ -2,6 +2,7 @@
 import { object, string, type InferType } from 'yup'
 import type { Database } from '@pel/supabase/types'
 import type { FormSubmitEvent } from '#ui/types'
+import { lowerString } from '~/utils/commons';
 
 definePageMeta({
   name: 'SigninForgot',
@@ -31,7 +32,7 @@ async function onSend(event: FormSubmitEvent<Schema>) {
   loading.value = true
   const formSubmit = event.data
 
-  const { data, error } = await auth.resetPasswordForEmail(formSubmit.email, {
+  const { data, error } = await auth.resetPasswordForEmail(lowerString(formSubmit.email), {
     redirectTo: `${config.public.baseUrl}/profile/auth/reset`,
   })
 
@@ -59,7 +60,7 @@ async function onSend(event: FormSubmitEvent<Schema>) {
 
 <template>
   <UCard v-if="sended" class="container mx-auto max-w-screen-md">
-    <h1 class="text-2xl uppercase mb-8">C’est partit</h1>
+    <h1 class="text-2xl uppercase mb-8">C’est parti</h1>
     <p>
       Si nous avons connaissance de cette adresse, vous devriez recevoir un courriel contenant les instructions pour
       récupérer votre compte Force Orange.

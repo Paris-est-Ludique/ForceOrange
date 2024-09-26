@@ -17,7 +17,7 @@ const { inputStyle, formGroupStyle } = useFoStyle()
 const loading = ref(false)
 
 const schema = object({
-  password: string().min(6, 'Il faudrait un minimum de 6 charactères').test({
+  password: string().min(6, 'Il faudrait un minimum de 6 charactères').max(500, 'hmmmm c\'est un peu beaucoup là non ?').test({
     name: 'password',
     message: 'Le mot de passe n\'est pas assez fort ~~',
     test: (value) => {

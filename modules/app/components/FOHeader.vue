@@ -14,7 +14,7 @@ const links = computed(() => {
 
   if (!user.value) {
     tmp.push({
-      label: 'Rejoindre FO',
+      label: 'S\'inscrire sur FO',
       to: '/join'
     })
   } else {
@@ -31,6 +31,8 @@ const signOut = async () => {
   const { error } = await auth.signOut()
   if (error) console.log(error)
   router.push('/')
+
+  // TOFIX
 }
 </script>
 

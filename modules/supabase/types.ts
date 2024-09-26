@@ -27,7 +27,7 @@ export type Database = {
           is_validated: boolean
           last_validation_date: string | null
           lastname: string | null
-          mail: string
+          email: string
           pel_editions: number[]
           phone_number: number | null
           picture_url: string | null
@@ -49,7 +49,7 @@ export type Database = {
           is_validated?: boolean
           last_validation_date?: string | null
           lastname?: string | null
-          mail: string
+          email: string
           pel_editions?: number[]
           phone_number?: number | null
           picture_url?: string | null
@@ -71,7 +71,7 @@ export type Database = {
           is_validated?: boolean
           last_validation_date?: string | null
           lastname?: string | null
-          mail?: string
+          email?: string
           pel_editions?: number[]
           phone_number?: number | null
           picture_url?: string | null

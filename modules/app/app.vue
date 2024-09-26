@@ -12,3 +12,7 @@ auth.onAuthStateChange(async (event) => {
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<style>
+@import '~/assets/main.css';
+</style>

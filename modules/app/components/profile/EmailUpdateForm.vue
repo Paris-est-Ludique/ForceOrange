@@ -2,6 +2,7 @@
 import { object, string, type InferType } from 'yup'
 import type { Database } from '@pel/supabase/types'
 import type { FormSubmitEvent } from '#ui/types'
+import { lowerString } from '~/utils/commons';
 
 definePageMeta({
   name: 'EmailUpdateForm',
@@ -15,7 +16,7 @@ const { inputStyle, formGroupStyle } = useFoStyle()
 
 const loading = ref(false)
 const schema = object({
-  email: string().lowercase().trim().email('Il semble que l\'email ne soit pas bon').required('Champ obligatoire'),
+  email: string().lowercase().trim().email('Il semble que l\'email ne soit pas bon').max(500, 'hmmmm c\'est un peu beaucoup là non ?').required('Champ obligatoire'),
 })
 
 type Schema = InferType<typeof schema>
@@ -29,7 +30,7 @@ async function onSave(event: FormSubmitEvent<Schema>) {
 
   const formSubmit = event.data
   const { data, error } = await auth.updateUser({
-    email: formSubmit.email,
+    email: lowerString(formSubmit.email),
   })
 
   if (error) {

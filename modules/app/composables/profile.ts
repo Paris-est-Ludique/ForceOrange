@@ -7,7 +7,9 @@ export const useProfile = () => {
   const profile = ref<{
     firstname: string
     lastname: string
-    displayname?: string
+    displayname: string | null
+    email: string
+    is_validated: boolean
   } | null>(null)
 
   const displayName = computed(() => {
@@ -37,8 +39,13 @@ export const useProfile = () => {
         return
       }
 
-      const { data, error } = await client.from('profiles').select('id,firstname,lastname,displayname,mail').eq('id', user.value.id).single()
-      return data
+      const { data, error } = await client.from('profiles').select('id,firstname,lastname,displayname,email,is_validated').eq('id', user.value.id).single()
+
+      if (!error) {
+        return data
+      }
+
+      return null
     })
 
     if (error.value) {
@@ -53,6 +60,8 @@ export const useProfile = () => {
   watch(user, (user) => {
     if (user && !loading.value) {
       getProfile()
+    } else {
+      profile.value = null
     }
   }, { immediate: true })
 

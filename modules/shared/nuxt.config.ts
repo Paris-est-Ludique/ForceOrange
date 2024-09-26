@@ -5,8 +5,6 @@ const currentDir = dirname(fileURLToPath(import.meta.url))
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-09-11',
-
   devtools: { enabled: true },
 
   extends: ['@nuxt/ui-pro'],
@@ -43,6 +41,10 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+
+  ui: {
+    safelistColors: ['orange', 'slate']
+  },
 
   fonts: {
     families: [

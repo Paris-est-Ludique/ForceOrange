@@ -17,7 +17,7 @@ const { inputStyle, formGroupStyle } = useFoStyle()
 
 const schema = object({
   email: string().lowercase().trim().email('Invalid email').required('Required'),
-  password: string().lowercase().trim().required('Required'),
+  password: string().trim().required('Required'),
 })
 
 type Schema = InferType<typeof schema>
