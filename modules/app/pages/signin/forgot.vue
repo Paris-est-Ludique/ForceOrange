@@ -11,6 +11,7 @@ definePageMeta({
 const config = useRuntimeConfig()
 const router = useRouter()
 const toast = useToast()
+const { showErrorToast } = useErrorSystem()
 
 const loading = ref(false)
 const sended = ref(false)
@@ -37,15 +38,8 @@ async function onSend(event: FormSubmitEvent<Schema>) {
   })
 
   if (error) {
-    console.log(error)
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de l\'envoi du lien de récupération',
-      color: 'red',
-    })
+    showErrorToast(error, 'Une erreur est survenue lors de l\'envoi du lien de récupération')
   } else {
-    console.log(data)
-
     toast.add({
       title: 'Va regarder ta boite de courriel !',
       description: 'Nous avons envoyé un lien de récupération à votre adresse courriel',

@@ -9,6 +9,7 @@ definePageMeta({
 
 const emit = defineEmits(['success', 'error'])
 
+const { showErrorToast } = useErrorSystem()
 const toast = useToast()
 const { auth } = useSupabaseClient<Database>()
 const { testPassword } = usePasswordStrength()
@@ -42,17 +43,9 @@ async function onSave(event: FormSubmitEvent<Schema>) {
   })
 
   if (error) {
-    console.log(error)
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de l\'envoi du nouveau mot de passe',
-      color: 'red',
-    })
-
+    showErrorToast(error, 'Une erreur est survenue lors de l\'envoi du nouveau mot de passe')
     emit('error')
   } else {
-    console.log(data)
-
     toast.add({
       title: 'Mot de passe changé',
       description: 'Nouveau mot de passe sauvegardé, vérifie tes mails pour confirmer le changement',

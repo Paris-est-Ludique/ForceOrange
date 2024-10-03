@@ -30,7 +30,7 @@ const handleError = () => clearError({ redirect: '/' })
       {{ error?.message }}
 
       <UButton m="3 t8" @click="handleError" bg-white font-bold>
-        Retourner vite sur FO
+        Retourner vite sur Force Orange
       </UButton>
     </div>
   </UMain>

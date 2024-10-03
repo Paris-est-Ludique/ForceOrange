@@ -1,9 +1,19 @@
-export const useProfile = () => {
+
+// HELP: to use the store outside of the setup function, you can use the `useStore` function
+// import { useStore } from '~/stores/myStore'
+// export default {
+//   asyncData({ $pinia }) {
+//     const store = useStore($pinia)
+//   },
+// }
+
+export const useProfile = defineStore('profile', () => {
   const user = useSupabaseUser()
   const client = useSupabaseClient()
-  const toast = useToast()
+  const { showErrorPage } = useErrorSystem()
 
   const loading = ref(false)
+
   const profile = ref<{
     firstname: string
     lastname: string
@@ -30,8 +40,7 @@ export const useProfile = () => {
     return user.value && !user.value?.email_confirmed_at
   })
 
-
-  async function getProfile() {
+  async function fetchProfile() {
     loading.value = true
 
     const { data, error } = await useAsyncData('profiles', async () => {
@@ -41,15 +50,15 @@ export const useProfile = () => {
 
       const { data, error } = await client.from('profiles').select('id,firstname,lastname,displayname,email,is_validated').eq('id', user.value.id).single()
 
-      if (!error) {
-        return data
+      if (error) {
+        throw error
       }
 
-      return null
+      return data
     })
 
     if (error.value) {
-      toast.add({ color: 'red', description: error.value?.message, title: 'Error' })
+      showErrorPage(error.value)
     } else {
       profile.value = data.value
     }
@@ -57,9 +66,9 @@ export const useProfile = () => {
     loading.value = false
   }
 
-  watch(user, (user) => {
+  watch(user, async (user) => {
     if (user && !loading.value) {
-      getProfile()
+      await fetchProfile()
     } else {
       profile.value = null
     }
@@ -69,7 +78,12 @@ export const useProfile = () => {
     user,
     loading,
     profile,
+    roles: computed(() => []),
     displayName,
     waitingMailValidation,
   }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useProfile, import.meta.hot))
 }

@@ -11,6 +11,17 @@ auth.onAuthStateChange(async (event) => {
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+
+  <!-- TODO: add errors boundaries instead custom toast
+    <NuxtErrorBoundary @error="someErrorLogger">
+      <template #error="{ error, clearError }">
+        You can display the error locally here: {{ error }}
+        <button @click="clearError">
+          This will clear the error.
+        </button>
+      </template>
+</NuxtErrorBoundary>
+-->
 </template>
 
 <style>

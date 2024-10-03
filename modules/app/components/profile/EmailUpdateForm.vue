@@ -11,6 +11,7 @@ definePageMeta({
 const emit = defineEmits(['success', 'error'])
 
 const toast = useToast()
+const { showErrorToast } = useErrorSystem()
 const { auth } = useSupabaseClient<Database>()
 const { inputStyle, formGroupStyle } = useFoStyle()
 
@@ -34,17 +35,9 @@ async function onSave(event: FormSubmitEvent<Schema>) {
   })
 
   if (error) {
-    console.log(error)
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de l\'envoi du nouveau courriel',
-      color: 'red',
-    })
-
+    showErrorToast(error, 'Erreur lors de la modification de l\'adresse de courriel')
     emit('error')
   } else {
-    console.log(data)
-
     toast.add({
       title: 'Adresse de courriel changé',
       description: 'Nouveau courriel sauvegardé, vérifie tes mails pour confirmer le changement',

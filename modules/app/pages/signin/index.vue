@@ -9,6 +9,7 @@ definePageMeta({
 
 const router = useRouter()
 const toast = useToast()
+const { showErrorToast } = useErrorSystem()
 
 const loading = ref(false)
 const { auth } = useSupabaseClient<Database>()
@@ -47,15 +48,8 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
   // })
 
   if (error) {
-    console.log(error)
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de ton inscription',
-      color: 'red',
-    })
+    showErrorToast(error, 'Une erreur est survenue lors de ton inscription')
   } else {
-    console.log(data)
-
     toast.add({
       title: 'Connecté(e)',
       description: 'Que la force Orange soit avec toi !',
@@ -81,11 +75,16 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
         <UInput :ui="inputStyle.ui" v-bind="inputStyle.attrs" type="password" v-model="state.password" />
       </UFormGroup>
 
-      <div class="mt-8 md:justify-center flex flex-col md:flex-row gap-8">
+      <div class="mt-8 md:justify-center flex flex-col md:flex-row gap-2 md:gap-8">
         <UButton type="submit" :disabled="loading" :loading="loading">Se Connecter</UButton>
         <UButton :to="{ name: 'SigninForgot' }" variant="ghost">Mot de passe oublié ?</UButton>
       </div>
     </UForm>
+
+    <p class="mt-8">
+      Tu n'as pas encore de compte ? alors tu peux
+      <UButton class="ml-2" to="/join" variant="outline">t'inscrire sur Force Orange</UButton>
+    </p>
 
     <!-- <p>ou bien</p>
 

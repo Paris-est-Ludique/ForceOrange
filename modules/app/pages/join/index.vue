@@ -14,6 +14,7 @@ const config = useRuntimeConfig()
 
 const router = useRouter()
 const toast = useToast()
+const { showErrorToast } = useErrorSystem()
 const { auth } = useSupabaseClient<Database>()
 
 const schema = object({
@@ -65,15 +66,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   })
 
   if (error) {
-    console.log(error)
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de l\'inscription',
-      color: 'red',
-    })
+    showErrorToast(error, 'Une erreur est survenue lors de l\'inscription')
   } else {
-    console.log(data)
-    // Redirect to the waiting page
     toast.add({
       title: 'Super !',
       description: 'On a bien reçu ton inscription, un email de validation t\'a été envoyé',
@@ -86,7 +80,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 }
 
 async function onError(event: FormErrorEvent) {
-  console.log(event.errors)
   const element = document.getElementById(event.errors[0].id)
   element?.focus()
   element?.scrollIntoView({ behavior: 'smooth', block: 'center' })

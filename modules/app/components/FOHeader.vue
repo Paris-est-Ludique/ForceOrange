@@ -6,15 +6,16 @@ defineOptions({
 })
 
 const router = useRouter()
-const { user, displayName, waitingMailValidation, loading } = useProfile()
+const { user, displayName, waitingMailValidation, loading } = storeToRefs(useProfile())
 const { auth } = useSupabaseClient<Database>()
+const { showErrorPage } = useErrorSystem()
 
 const links = computed(() => {
   const tmp = []
 
-  if (!user.value) {
+  if (!user?.value) {
     tmp.push({
-      label: 'S\'inscrire sur FO',
+      label: 'S\'inscrire',
       to: '/join'
     })
   } else {
@@ -29,10 +30,9 @@ const links = computed(() => {
 
 const signOut = async () => {
   const { error } = await auth.signOut()
-  if (error) console.log(error)
-  router.push('/')
 
-  // TOFIX
+  showErrorPage(error)
+  router.push('/')
 }
 </script>
 

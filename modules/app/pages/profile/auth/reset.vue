@@ -2,10 +2,12 @@
 definePageMeta({
   name: 'ProfileAuthResetPassword',
 })
+
+const router = useRouter()
 </script>
 
 <template>
   <UCard class="container mx-auto max-w-screen-md">
-    <PasswordUpdateForm />
+    <PasswordUpdateForm @success="() => router.to('/signin')" />
   </UCard>
 </template>
