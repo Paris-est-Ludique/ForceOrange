@@ -8,6 +8,6 @@ const router = useRouter()
 
 <template>
   <UCard class="container mx-auto max-w-screen-md">
-    <PasswordUpdateForm @success="() => router.to('/signin')" />
+    <PasswordUpdateForm @success="() => router.push('/')" />
   </UCard>
 </template>

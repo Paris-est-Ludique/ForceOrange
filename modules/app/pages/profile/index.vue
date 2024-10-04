@@ -5,7 +5,7 @@ definePageMeta({
   name: 'Profile',
 })
 
-const { displayName, profile } = storeToRefs(useProfile())
+const { displayName, profile } = storeToRefs(useMember())
 
 const isPasswordModalOpen = ref(false)
 const isEmailModalOpen = ref(false)

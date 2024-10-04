@@ -6,7 +6,7 @@ defineOptions({
 })
 
 const router = useRouter()
-const { user, displayName, waitingMailValidation, loading } = storeToRefs(useProfile())
+const { user, displayName, waitingMailValidation, loading } = storeToRefs(useMember())
 const { auth } = useSupabaseClient<Database>()
 const { showErrorPage } = useErrorSystem()
 
@@ -32,7 +32,7 @@ const signOut = async () => {
   const { error } = await auth.signOut()
 
   showErrorPage(error)
-  router.push('/')
+  router.push('/signin')
 }
 </script>
 

@@ -7,7 +7,7 @@
 //   },
 // }
 
-export const useProfile = defineStore('profile', () => {
+export const useMember = defineStore('member', () => {
   const user = useSupabaseUser()
   const client = useSupabaseClient()
   const { showErrorPage } = useErrorSystem()
@@ -85,5 +85,5 @@ export const useProfile = defineStore('profile', () => {
 })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useProfile, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useMember, import.meta.hot))
 }

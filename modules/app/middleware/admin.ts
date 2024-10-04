@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to, _from) => {
-  const { roles } = storeToRefs(useProfile())
+  const { roles } = storeToRefs(useMember())
 
-  if (!roles.value.incllude('admin')) {
+  if (!roles.value.include('admin')) {
     return navigateTo('/')
   }
 })
