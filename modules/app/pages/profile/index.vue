@@ -19,10 +19,10 @@ const isEmailModalOpen = ref(false)
       <h1 class="text-2xl">{{ displayName }}</h1>
 
       <p v-if="!profile?.is_validated">
-        Ton compte sera bientôt validé pour les organisateurs du festival Paris Est Ludique.<br>
+        Ton compte sera bientôt validé pour les organisateurs du festival Paris est Ludique.<br>
       </p>
 
-      <p v-else>Ton compte a été validé ! Prêt pour Paris Est Ludique 2025 ?</p>
+      <p v-else>Ton compte a été validé ! Prêt pour Paris est Ludique 2025 ?</p>
     </UCard>
 
     <UCard>
