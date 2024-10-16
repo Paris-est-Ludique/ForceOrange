@@ -148,7 +148,7 @@ async function onError(event: FormErrorEvent) {
       </UFormGroup>
 
       <UFormGroup name="isAdult" class="mb-4">
-        <UCheckbox label="Je serais majeur avant la prochaine édition." v-model="state.isAdult" />
+        <UCheckbox label="Je serai majeur avant la prochaine édition." v-model="state.isAdult" />
       </UFormGroup>
 
       <UButton color="orange" type="submit" :loading="isJoining" :disabled="isJoining">S'inscrire</UButton>
