@@ -73,4 +73,7 @@
     "pcss",
     "postcss"
   ],
+  "conventionalCommits.scopes": [
+    "#42"
+  ],
 }
