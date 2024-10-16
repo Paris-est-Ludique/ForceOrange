@@ -6,7 +6,7 @@ export default <Partial<Config>>{
     extend: {
       fontFamily: {
         logo: ['Grobold'],
-        sans: ['San', ...defaultTheme.fontFamily.sans]
+        sans: ['Signika', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         orange: {
