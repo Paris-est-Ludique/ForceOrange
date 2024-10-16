@@ -140,7 +140,7 @@ async function onError(event: FormErrorEvent) {
       </div>
 
       <UFormGroup name="lastEdition" class="my-8">
-        <UCheckbox label="J'ai participer à la précédente édition ?" v-model="state.lastEdition" />
+        <UCheckbox label="J'ai participé la précédente édition ?" v-model="state.lastEdition" />
         <template #help>
           Dis nous si tu étais déjà bénévole à la dernière édition.<br>
           Surtout ne mens pas, on vous connait ! (et on a les photos)
@@ -148,7 +148,7 @@ async function onError(event: FormErrorEvent) {
       </UFormGroup>
 
       <UFormGroup name="isAdult" class="mb-4">
-        <UCheckbox label="Je serais majeur avant la prochaine édition." v-model="state.isAdult" />
+        <UCheckbox label="Je serai majeur avant la prochaine édition." v-model="state.isAdult" />
       </UFormGroup>
 
       <UButton color="orange" type="submit" :loading="isJoining" :disabled="isJoining">S'inscrire</UButton>
