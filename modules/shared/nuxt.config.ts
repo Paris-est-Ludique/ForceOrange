@@ -43,7 +43,7 @@ export default defineNuxtConfig({
   ],
 
   ui: {
-    safelistColors: ['orange', 'slate']
+    safelistColors: ['orange', 'slate'],
   },
 
   fonts: {
@@ -53,10 +53,10 @@ export default defineNuxtConfig({
         src: '/fonts/GROBOLD.woff2',
       },
       {
-        name: 'Londrina Solid',
+        name: 'Signika',
         provider: 'google',
-        weights: [200, 300, 400, 700],
-      }
+        weights: [300, 400, 600],
+      },
     ],
   },
 })
