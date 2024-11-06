@@ -86,6 +86,9 @@ async function onSignin(event: FormSubmitEvent<Schema>) {
       <UButton class="ml-2" to="/join" variant="outline">t'inscrire sur Force Orange</UButton>
     </p>
 
+    <p>
+      Attention: tu dois créer un nouveau compte, même si tu étais là l'an passé.
+    </p>
     <!-- <p>ou bien</p>
 
     <div>
